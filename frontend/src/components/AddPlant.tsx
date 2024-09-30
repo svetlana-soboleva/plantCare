@@ -1,43 +1,31 @@
-import React, {useState} from "react";
-import {Plant} from "../types/Plant.ts";
-import PlantService from "../services/PlantService.ts";
 import { PiPlant } from "react-icons/pi";
 
-function AddPlant() {
 
-    const [name, setName] = useState('');
-    const [species, setSpecies] = useState('');
-    const [location, setLocation] = useState('');
-    const [wateringFrequency, setWateringFrequency] = useState<number>(0);
+interface AddPlantProps {
+    name: string;
+    setName: (name: string) => void;
+    species: string;
+    setSpecies: (species: string) => void;
+    location: string;
+    setLocation: (location: string) => void;
+    wateringFrequency: number;
+    setWateringFrequency: (wateringFrequency: number) => void;
+    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
 
+const AddPlant: React.FC<AddPlantProps> = ({
+    name,
+    setName,
+    species,
+    setSpecies,
+    location,
+    setLocation,
+    wateringFrequency,
+    setWateringFrequency,
+    handleSubmit,
+}) =>  {
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        //event.preventDefault();
-        // maybe I need to use insertable or partial to remove id
-        const newPlant: Plant = {
-            id: 0,
-            name,
-            species,
-            location,
-            wateringFrequency,
-            sunlightRequirement: "Medium",
-            soilType: "Loamy",
-            isIndoorPlant: true
-        };
-
-        try {
-            await PlantService.addPlant(newPlant);
-            setName('');
-            setSpecies('');
-            setLocation('');
-            setWateringFrequency(0);
-
-        } catch (error) {
-            console.error('Error adding plant:', error);
-        }
-    };
-
-
+    
     return (
         <div className="flex flex-col gap-10">
             <h2 className="text-xl italic font-bold text-indigo-400">Add a new plant</h2>

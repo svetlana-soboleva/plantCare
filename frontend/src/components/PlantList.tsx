@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Plant } from '../types/Plant.ts';
-import PlantService from "../services/PlantService.ts";
 import { FcEmptyTrash } from "react-icons/fc";
+import { Plant } from "../types/Plant";
 
-const PlantList: React.FC = () => {
-    const [plants, setPlants] = useState<Plant[]>([]);
-
-    useEffect(() => {
-        const fetchPlants = async () => {
-            try {
-                const plantData = await PlantService.getPlants();
-                // @ts-ignore
-                setPlants(plantData);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-         fetchPlants()
-    }, []);
+interface PlantsProp {
+    plants: Plant[];    
+  }
 
 
+const PlantList= ({plants} : PlantsProp) => {
+    
     return (
         plants.length === 0 ? (
             <div className="flex flex-col items-center">
@@ -36,7 +24,7 @@ const PlantList: React.FC = () => {
                             key={plant.id}
                         >
                             <img
-                                src="/plant.png" // Ensure this path is correct
+                                src="/plant.png" 
                                 alt={plant.name}
                                 className="w-16 h-16 object-cover rounded"
                             />

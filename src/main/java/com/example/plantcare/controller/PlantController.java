@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5174")
 @RequestMapping("/api/plants")
 public class PlantController {
 
     @Autowired
     private PlantService plantService;
-
 
     @GetMapping
     public List<Plant> getAllPlants() {
@@ -29,12 +29,10 @@ public class PlantController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
     @PostMapping
     public Plant addPlant(@RequestBody Plant plant) {
         return plantService.addPlant(plant);
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<Plant> updatePlant(@PathVariable Long id, @RequestBody Plant updatedPlant) {
@@ -42,7 +40,6 @@ public class PlantController {
         return plant.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlant(@PathVariable Long id) {
