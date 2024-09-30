@@ -47,56 +47,28 @@ public class Plant {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getSpecies() {
         return species;
-    }
-
-    public void setSpecies(String species) {
-        this.species = species;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public int getWateringFrequency() {
         return wateringFrequency;
-    }
-
-    public void setWateringFrequency(int wateringFrequency) {
-        this.wateringFrequency = wateringFrequency;
     }
 
     public String getSunlightRequirement() {
         return sunlightRequirement;
     }
 
-    public void setSunlightRequirement(String sunlightRequirement) {
-        this.sunlightRequirement = sunlightRequirement;
-    }
-
     public String getSoilType() {
         return soilType;
     }
 
-    public void setSoilType(String soilType) {
-        this.soilType = soilType;
-    }
-
     public boolean isIndoorPlant() {
         return isIndoorPlant;
-    }
-
-    public void setIndoorPlant(boolean indoorPlant) {
-        isIndoorPlant = indoorPlant;
     }
 
     public static class PlantBuilder {
